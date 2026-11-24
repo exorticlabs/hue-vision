@@ -1,0 +1,77 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hue-vision"
+version = "1.0.0"
+description = "Universal Live Multi-Device Display Understanding, Screen Context Synthesis & Causal Interaction Engine for AI Agents & LLMs"
+readme = "README.md"
+authors = [
+    { name = "Exortic Research Lab", email = "research@exortic.com" }
+]
+license = { text = "MIT" }
+keywords = [
+    "ai", "vision", "agents", "llm", "display-understanding", "mcp",
+    "screen-perception", "causal-interaction", "gui-automation",
+    "windows", "macos", "linux", "android"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: User Interfaces",
+]
+requires-python = ">=3.9"
+dependencies = [
+    "numpy>=1.24.0",
+    "Pillow>=9.0.0",
+    "mss>=9.0.0",
+]
+
+[project.optional-dependencies]
+neural = [
+    "torch>=2.0.0",
+]
+desktop = [
+    "pyautogui>=0.9.54",
+    "pynput>=1.7.6",
+    "psutil>=5.9.0",
+]
+windows = [
+    "uiautomation>=2.0.20",
+    "pywin32>=306",
+]
+all = [
+    "torch>=2.0.0",
+    "pyautogui>=0.9.54",
+    "pynput>=1.7.6",
+    "psutil>=5.9.0",
+    "uiautomation>=2.0.20; platform_system=='Windows'",
+    "pywin32>=306; platform_system=='Windows'",
+]
+
+[project.scripts]
+hue-vision = "hue_vision.cli:main"
+
+[project.urls]
+Homepage = "https://exortic.com"
+Repository = "https://github.com/exorticlabs/hue-vision"
+Documentation = "https://github.com/exorticlabs/hue-vision#readme"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["hue_vision*"]
+
+[tool.setuptools.package-data]
+hue_vision = ["weights/*.pt"]
